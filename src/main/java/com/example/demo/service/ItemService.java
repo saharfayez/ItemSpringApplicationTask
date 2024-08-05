@@ -11,5 +11,5 @@ public interface ItemService {
     public abstract void addItem(Item item);
     public abstract void deleteItem(String id);
     public abstract List<Item> getItems();
-    public abstract Optional<Item> getItem(String id);
+    public abstract Item getItem(String id);
 }

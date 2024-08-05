@@ -35,7 +35,7 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public Optional<Item> getItem(String id) {
-        return listOfItems.stream().filter(item -> item.getId().equals(id)).findFirst();
+    public Item getItem(String id) {
+        return listOfItems.stream().filter(item -> item.getId().equals(id)).findFirst().orElse(null);
     }
 }
