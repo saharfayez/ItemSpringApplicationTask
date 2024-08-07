@@ -10,7 +10,7 @@ import java.util.Optional;
 
 @Service
 public class ItemServiceImpl implements ItemService {
-    List<Item> listOfItems = new ArrayList<>(
+    List<Item>  listOfItems = new ArrayList<>(
             Arrays.asList(
                     new Item("1", "item1", "001"),
                     new Item("2", "item2", "002"),
@@ -26,7 +26,9 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public void deleteItem(String id) {
-        listOfItems.remove(id);
+        System.out.println("before" + listOfItems.size());
+        listOfItems.removeIf(item -> item.getId().equals(id));
+        System.out.println("after" + listOfItems.size());
     }
 
     @Override

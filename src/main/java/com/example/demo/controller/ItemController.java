@@ -19,25 +19,27 @@ public class ItemController {
     private ItemServiceImpl itemService;
 
     @GetMapping("/items")
-    public List<Item> getAllItems() {
-        return itemService.getItems();
+    public ResponseEntity<List<Item>> getAllItems() {
+        List<Item> itemList = itemService.getItems();
+        return ResponseEntity.ok(itemList);
     }
 
     @PostMapping("/items")
-    public void addItem(@RequestBody Item item) {
-
+    public ResponseEntity <Item> addItem(@RequestBody Item item) {
         itemService.addItem(item);
-
+        return new ResponseEntity<>(item , HttpStatus.CREATED);
     }
 
     @DeleteMapping("/items/{id}")
-    public ResponseEntity<String> deleteItem(@PathVariable("id") String id) {
+    public ResponseEntity <Item>deleteItem(@PathVariable("id") String id) {
         Item item = itemService.getItem(id);
         if (item != null) {
             itemService.deleteItem(id);
-            return new ResponseEntity<>("Item deleted", HttpStatus.OK);
+            System.out.println(itemService.getItems().size());
+            return new ResponseEntity<>(item , HttpStatus.OK);
+
         }
-      return new ResponseEntity<>("Item not found", HttpStatus.NOT_FOUND);
+      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @GetMapping("/items/{id}")
