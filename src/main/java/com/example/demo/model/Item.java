@@ -1,21 +1,31 @@
 package com.example.demo.model;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
+@Entity
+@Table(name = "item")
 public class Item {
-    private String id;
+    @Id
+    private Long id;
     private String name;
     private String code;
 
-    public Item(String id, String name, String code) {
+    public Item(Long id, String name, String code) {
         this.id = id;
         this.name = name;
         this.code = code;
     }
 
-    public String getId() {
+    public Item() {
+
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -33,5 +43,14 @@ public class Item {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    @Override
+    public String toString() {
+        return "Item{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", code='" + code + '\'' +
+                '}';
     }
 }

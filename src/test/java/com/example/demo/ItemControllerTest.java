@@ -1,7 +1,7 @@
 package com.example.demo;
 
 import com.example.demo.model.Item;
-import com.example.demo.service.ItemServiceImpl;
+import com.example.demo.service.impl.ItemServiceImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -37,11 +37,11 @@ public class ItemControllerTest {
     @BeforeEach
     void setUp() {
         listOfItems = Arrays.asList(
-                new Item("1", "item1", "001"),
-                new Item("2", "item2", "002"),
-                new Item("3", "item3", "003"),
-                new Item("4", "item4", "004"),
-                new Item("5", "item5", "005")
+                new Item(1l, "item1", "001"),
+                new Item(2l, "item2", "002"),
+                new Item(3l, "item3", "003"),
+                new Item(4l, "item4", "004"),
+                new Item(5l, "item5", "005")
         );
     }
 
@@ -57,7 +57,7 @@ public class ItemControllerTest {
 
     @Test
     public void getItemTest() throws Exception {
-        when(itemService.getItem("3")).thenReturn(listOfItems.get(2));
+        when(itemService.getItem(3l)).thenReturn(listOfItems.get(2));
         mockMvc.perform(get("/items/3"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.name").value("item3"));
@@ -65,7 +65,7 @@ public class ItemControllerTest {
 
     @Test
     public void addItemTest() throws Exception {
-        Item item = new Item("7", "item7", "007");
+        Item item = new Item(7l, "item7", "007");
         mockMvc.perform(post("/items")
                         .content(asJsonString(item))
                         .contentType(MediaType.APPLICATION_JSON))
