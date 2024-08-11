@@ -35,4 +35,10 @@ public class ItemController {
       Item item = itemService.getItem(id);
         return new ResponseEntity<Item>(item, HttpStatus.OK);
     }
+    @GetMapping("/items/get/{name}")
+    public ResponseEntity<Item> getItemByName( @PathVariable("name") String name){
+
+        Item item = itemService.getItemByName(name);
+        return new ResponseEntity<>(item , HttpStatus.OK);
+    }
 }

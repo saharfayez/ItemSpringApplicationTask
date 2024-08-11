@@ -8,4 +8,6 @@ public interface ItemService {
     public abstract void deleteItem(Long id);
     public abstract List<Item> getItems();
     public abstract Item getItem(Long id);
+
+    public abstract Item getItemByName(String name);
 }

@@ -38,4 +38,9 @@ public class ItemServiceImpl implements ItemService {
             throw new RuntimeException();
         }
     }
+
+    @Override
+    public Item getItemByName(String name) {
+        return itemRepository.findItem(name);
+    }
 }
